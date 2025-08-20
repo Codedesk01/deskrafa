@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Desafio Prático – Local Turístico</title>
+  <meta name="description" content="Página informativa e responsiva sobre um local turístico, com atrações, preços, horários, galeria e contato." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b1020;
+      --card: #0f1730;
+      --muted: #8fa1c7;
+      --text: #eaf0ff;
+      --brand: #5be3b4;
+      --brand-2: #6ab7ff;
+      --warning: #ffd166;
+      --radius-xl: 18px;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", sans-serif;
+      color: var(--text);
+      background: radial-gradient(1200px 600px at 75% -10%, #14234a 0%, transparent 60%),
+                  radial-gradient(1000px 500px at -20% 20%, #0e1a3a 0%, transparent 60%),
+                  var(--bg);
+      line-height: 1.6;
+    }
+
+    /* Utilitários */
+    .container { width: min(1120px, 92%); margin: 0 auto; }
+    .badge { display:inline-block; padding:.35rem .6rem; border-radius:999px; background:rgba(91,227,180,.12); color:var(--brand); font-weight:600; font-size:.85rem; letter-spacing:.3px; }
+    .kicker { color: var(--muted); font-size: .95rem; }
+    .btn {
+      display: inline-flex; align-items:center; gap:.5rem;
+      padding:.9rem 1.1rem; border-radius:12px; border:1px solid transparent;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      color:#042014; font-weight: 700; text-decoration: none; box-shadow: var(--shadow);
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(0,0,0,.45); }
+    .btn.ghost { background: transparent; color: var(--text); border-color: rgba(255,255,255,.2); box-shadow: none; }
+
+    /* Header */
+    header {
+      position: sticky; top: 0; z-index: 40; backdrop-filter: blur(8px);
+      background: rgba(11,16,32,.6); border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .nav { display:flex; align-items:center; justify-content:space-between; padding:.9rem 0; }
+    .brand { display:flex; gap:.7rem; align-items:center; font-weight:800; letter-spacing:.4px; }
+    .brand .logo { width: 34px; height: 34px; border-radius:10px; background: linear-gradient(135deg, var(--brand), var(--brand-2)); display:grid; place-items:center; color:#04161a; font-weight:900; }
+    nav ul { list-style:none; display:flex; gap:1rem; padding:0; margin:0; }
+    nav a { color: var(--text); text-decoration:none; font-weight:600; opacity:.9; padding:.5rem .7rem; border-radius:10px; }
+    nav a:hover { background: rgba(255,255,255,.06); }
+
+    /* Hero */
+    .hero { position:relative; padding: 5rem 0 4rem; overflow:hidden; }
+    .hero-grid { display:grid; grid-template-columns: 1.1fr .9fr; gap: 2rem; align-items:center; }
+    .hero h1 { font-size: clamp(2rem, 3.6vw + .8rem, 3.4rem); line-height: 1.1; margin: .5rem 0 1rem; }
+    .hero p { font-size: clamp(1rem, 1.1vw + .6rem, 1.15rem); color: #cdd7f6; }
+    .hero .cta { display:flex; gap:.8rem; margin-top:1.3rem; flex-wrap: wrap; }
+    .hero .card {
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border: 1px solid rgba(255,255,255,.08); border-radius: var(--radius-xl);
+      padding: 1rem; box-shadow: var(--shadow);
+    }
+    .showcase { display:grid; grid-template-columns: 1fr 1fr; gap:.75rem; }
+    .showcase img { width:100%; height: 240px; object-fit: cover; border-radius: 14px; border:1px solid rgba(255,255,255,.1); }
+
+    /* Blocos */
+    section { padding: 3.5rem 0; }
+    .section-title { font-size: 1.9rem; margin: 0 0 .5rem; }
+    .grid-3 { display:grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .grid-2 { display:grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border: 1px solid rgba(255,255,255,.08); border-radius: var(--radius-xl);
+      padding: 1.1rem; box-shadow: var(--shadow);
+    }
+
+    .feature { display:flex; gap:.9rem; align-items:flex-start; }
+    .feature .icon { width:42px; height:42px; border-radius:10px; display:grid; place-items:center; background:rgba(255,255,255,.08); font-weight:900; }
+
+    /* Tabela de preços */
+    table { width:100%; border-collapse: collapse; }
+    th, td { padding: .9rem; border-bottom: 1px solid rgba(255,255,255,.08); text-align:left; }
+    th { color:#dfe8ff; font-size:.95rem; }
+    td small { color: var(--muted); }
+
+    /* Galeria */
+    .gallery { display:grid; grid-template-columns: repeat(4, 1fr); gap:.75rem; }
+    .gallery img { width:100%; height: 180px; object-fit: cover; border-radius: 12px; border:1px solid rgba(255,255,255,.1); }
+
+    /* Depoimentos */
+    .quote { font-size:1rem; color:#d6e1ff; }
+    .stars { color: var(--warning); letter-spacing: 2px; }
+
+    /* Rodapé */
+    footer { border-top:1px solid rgba(255,255,255,.08); padding:2rem 0; color:#b7c4e6; }
+
+    /* Responsivo */
+    @media (max-width: 960px) {
+      .hero-grid, .grid-3, .grid-2 { grid-template-columns: 1fr; }
+      .showcase { grid-template-columns: 1fr 1fr; }
+      .gallery { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .btn { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand"><div class="logo">LT</div> Local Turístico</div>
+      <nav aria-label="Primária">
+        <ul>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#atracoes">Atrações</a></li>
+          <li><a href="#precos">Preços</a></li>
+          <li><a href="#galeria">Galeria</a></li>
+          <li><a href="#visite">Como chegar</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="badge" aria-label="Selo destaque">Destino imperdível</span>
+          <h1>Serra do Encanto — natureza, trilhas e vistas de tirar o fôlego</h1>
+          <p class="kicker">Um refúgio cercado por cachoeiras cristalinas, mirantes e gastronomia local. Planeje sua visita e descubra porque a Serra do Encanto é o <strong>passeio favorito das famílias</strong> e aventureiros.</p>
+          <div class="cta">
+            <a class="btn" href="#precos" aria-label="Ver opções de ingresso">Ver ingressos</a>
+            <a class="btn ghost" href="#galeria" aria-label="Ver galeria de fotos">Ver fotos</a>
+          </div>
+          <div class="card" style="margin-top:1rem">
+            <strong>Horário hoje:</strong> 08:00–18:00 · Última entrada: 17:00 · <span style="color:var(--brand)">Aberto</span>
+          </div>
+        </div>
+        <div class="showcase">
+          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop" alt="Vista panorâmica das montanhas ao pôr do sol" />
+          <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=1200&auto=format&fit=crop" alt="Trilha em meio à floresta" />
+          <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1200&auto=format&fit=crop" alt="Cachoeira de água cristalina" />
+          <img src="https://images.unsplash.com/photo-1532641140-ef8f2c7b16b8?q=80&w=1200&auto=format&fit=crop" alt="Mirante com deck de madeira" />
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE -->
+    <section id="sobre">
+      <div class="container grid-2">
+        <div class="card">
+          <h2 class="section-title">Sobre o Local</h2>
+          <p>Localizada a apenas <strong>45 km do centro</strong>, a Serra do Encanto reúne trilhas sinalizadas, áreas de piquenique, mirantes e um centro de visitantes completo. O destino é ideal para famílias, casais e grupos de aventura.</p>
+          <ul>
+            <li>Acesso pavimentado e estacionamento gratuito;</li>
+            <li>Centro de visitantes com sanitários, lojas e café;</li>
+            <li>Guias credenciados e atividades para crianças;</li>
+            <li>Área pet friendly (com regras de circulação).</li>
+          </ul>
+        </div>
+        <div class="grid-2">
+          <div class="card feature">
+            <div class="icon">⛰️</div>
+            <div>
+              <h3>Mirantes e Trilhas</h3>
+              <p>Percursos de 1 a 10 km com níveis fácil, moderado e intenso, sempre sinalizados e com pontos de hidratação.</p>
+            </div>
+          </div>
+          <div class="card feature">
+            <div class="icon">💧</div>
+            <div>
+              <h3>Cachoeiras</h3>
+              <p>Quedas-d’água acessíveis e áreas seguras para banho, com guarda-vidas nos fins de semana e feriados.</p>
+            </div>
+          </div>
+          <div class="card feature">
+            <div class="icon">🍽️</div>
+            <div>
+              <h3>Gastronomia Local</h3>
+              <p>Sabores da região com ingredientes frescos e pratos afetivos, do café da manhã ao jantar.</p>
+            </div>
+          </div>
+          <div class="card feature">
+            <div class="icon">🚌</div>
+            <div>
+              <h3>Acesso Fácil</h3>
+              <p>Chegue de carro, transporte por aplicativo ou vans de turismo credenciadas.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ATRAÇÕES -->
+    <section id="atracoes">
+      <div class="container">
+        <h2 class="section-title">Atrações Principais</h2>
+        <div class="grid-3">
+          <div class="card">
+            <h3>Trilha do Horizonte</h3>
+            <p>Ideal para iniciantes (2 km – 45 min). Deck final com vista 360° e placas interpretativas sobre fauna e flora.</p>
+          </div>
+          <div class="card">
+            <h3>Cachoeira Cristal</h3>
+            <p>Piscinas naturais rasas, perfeitas para famílias. Área de descanso com redes e quiosques.</p>
+          </div>
+          <div class="card">
+            <h3>Mirante das Nuvens</h3>
+            <p>O pôr do sol mais famoso da região. Chegue 30 min antes para garantir as melhores fotos.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PREÇOS -->
+    <section id="precos">
+      <div class="container">
+        <h2 class="section-title">Ingressos & Horários</h2>
+        <div class="grid-2">
+          <div class="card">
+            <table aria-label="Tabela de preços e políticas">
+              <thead>
+                <tr>
+                  <th>Categoria</th>
+                  <th>Valor</th>
+                  <th>Observações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Inteira</td>
+                  <td>R$ 30,00</td>
+                  <td><small>Inclui acesso a todas as trilhas e mirantes.</small></td>
+                </tr>
+                <tr>
+                  <td>Meia-entrada</td>
+                  <td>R$ 15,00</td>
+                  <td><small>Estudantes, idosos (60+) e PCD com comprovação.</small></td>
+                </tr>
+                <tr>
+                  <td>Família (até 4 pessoas)</td>
+                  <td>R$ 80,00</td>
+                  <td><small>2 adultos + 2 crianças ou 1 adulto + 3 crianças.</small></td>
+                </tr>
+                <tr>
+                  <td>Guia local (opcional)</td>
+                  <td>R$ 70,00</td>
+                  <td><small>Grupo de até 8 pessoas · 2 horas.</small></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card">
+            <p><strong>Horário de funcionamento:</strong> terça a domingo, 08:00–18:00 (fechado às segundas para manutenção).</p>
+            <p><strong>Melhor época:</strong> abril a setembro (temperaturas amenas e menor incidência de chuvas).</p>
+            <p><strong>Regras de segurança:</strong> use calçado adequado, leve água e protetor solar, respeite a sinalização e não deixe lixo.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERIA -->
+    <section id="galeria">
+      <div class="container">
+        <h2 class="section-title">Galeria</h2>
+        <div class="gallery" role="list">
+          <img role="listitem" src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=1200&auto=format&fit=crop" alt="Passarela de madeira sobre a vegetação" />
+          <img role="listitem" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200&auto=format&fit=crop" alt="Vale amplo com montanhas ao fundo" />
+          <img role="listitem" src="https://images.unsplash.com/photo-1477414348463-c0eb7f1359b6?q=80&w=1200&auto=format&fit=crop" alt="Rocha com vista para o horizonte" />
+          <img role="listitem" src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=1200&auto=format&fit=crop" alt="Cachoeira entre paredões de pedra" />
+          <img role="listitem" src="https://images.unsplash.com/photo-1500534623283-312aade485b7?q=80&w=1200&auto=format&fit=crop" alt="Trilha sob árvores altas" />
+          <img role="listitem" src="https://images.unsplash.com/photo-1500043357865-c6b8827edfbe?q=80&w=1200&auto=format&fit=crop" alt="Mirante com guarda-corpo e vista ampla" />
+          <img role="listitem" src="https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?q=80&w=1200&auto=format&fit=crop" alt="Rio serpenteando por pedras" />
+          <img role="listitem" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200&auto=format&fit=crop" alt="Vale verdejante ao entardecer" />
+        </div>
+      </div>
+    </section>
+
+    <!-- COMO CHEGAR -->
+    <section id="visite">
+      <div class="container grid-2">
+        <div class="card">
+          <h2 class="section-title">Como chegar</h2>
+          <p>Rodovia BR-000, km 45 — Entrada sinalizada “Serra do Encanto”.
+            <br>Estacionamento gratuito · Vagas para PCD.
+          </p>
+          <ul>
+            <li><strong>Carro:</strong> 50 min do centro, acesso pavimentado.</li>
+            <li><strong>Ônibus/Vans:</strong> saídas da rodoviária central (a cada 2h).</li>
+            <li><strong>Aplicativos:</strong> ponto de desembarque junto ao Centro de Visitantes.</li>
+          </ul>
+        </div>
+        <div class="card" aria-label="Mapa da localização">
+          <iframe title="Mapa – Serra do Encanto" style="border:0; width:100%; height:320px; border-radius:12px;" loading="lazy" allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31430.95983225729!2d-43.210!3d-22.951!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x997fd59f1fddd%3A0x3f8a3c!2sParque%20Nacional!5e0!3m2!1spt-BR!2sBR!4v1689876543210">
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEPOIMENTOS -->
+    <section id="depoimentos">
+      <div class="container">
+        <h2 class="section-title">O que dizem os visitantes</h2>
+        <div class="grid-3">
+          <div class="card">
+            <div class="stars" aria-label="5 de 5">★★★★★</div>
+            <p class="quote">“Lugar incrível para ir com a família. Trilha leve e cachoeira segura para as crianças.”</p>
+            <p><strong>— Ana P.</strong></p>
+          </div>
+          <div class="card">
+            <div class="stars" aria-label="5 de 5">★★★★★</div>
+            <p class="quote">“O pôr do sol no Mirante das Nuvens é inesquecível. Leve a câmera!”</p>
+            <p><strong>— Lucas M.</strong></p>
+          </div>
+          <div class="card">
+            <div class="stars" aria-label="4 de 5">★★★★☆</div>
+            <p class="quote">“Estrutura ótima e equipe atenciosa. Voltarei para fazer a trilha longa.”</p>
+            <p><strong>— Bruna S.</strong></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section id="contato">
+      <div class="container grid-2">
+        <div class="card">
+          <h2 class="section-title">Planeje sua visita</h2>
+          <p>Tire dúvidas sobre ingressos, acessibilidade e roteiros guiados. Responderemos em até 1 dia útil.</p>
+          <p><strong>E-mail:</strong> visita@serradoencanto.com.br<br>
+             <strong>WhatsApp:</strong> (00) 00000‑0000</p>
+          <a class="btn" href="#precos" aria-label="Ver ingressos">Comprar ingressos</a>
+        </div>
+        <form class="card" aria-label="Formulário de contato" onsubmit="event.preventDefault(); alert('Mensagem enviada!');">
+          <label for="nome">Nome</label>
+          <input id="nome" name="nome" required placeholder="Seu nome" style="width:100%; margin:.4rem 0 1rem; padding:.8rem; border-radius:10px; border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.04); color:var(--text);">
+          <label for="email">E-mail</label>
+          <input id="email" type="email" name="email" required placeholder="voce@email.com" style="width:100%; margin:.4rem 0 1rem; padding:.8rem; border-radius:10px; border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.04); color:var(--text);">
+          <label for="mensagem">Mensagem</label>
+          <textarea id="mensagem" name="mensagem" rows="4" placeholder="Como podemos ajudar?" style="width:100%; margin:.4rem 0 1rem; padding:.8rem; border-radius:10px; border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.04); color:var(--text);"></textarea>
+          <button class="btn" type="submit">Enviar</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="grid-2">
+        <p>© <span id="year"></span> Serra do Encanto · Todos os direitos reservados.</p>
+        <p style="text-align:right">Feito para o <strong>Desafio Prático – Local Turístico</strong></p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Atualiza ano automaticamente
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
