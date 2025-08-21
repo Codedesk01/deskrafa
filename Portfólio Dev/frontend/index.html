@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfólio — Desenvolvedor</title>
+  <meta name="description" content="Portfólio profissional com links para projetos e formas de contato." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0b0d12;
+      --panel: #121622;
+      --muted: #9aa3b2;
+      --text: #e8ecf1;
+      --brand: #7c5cff; /* roxo suave */
+      --brand-2:#1ee6a5; /* verde detalhe */
+      --border: #1d2333;
+      --shadow: 0 10px 30px rgba(0,0,0,.45);
+      --radius: 16px;
+      --radius-lg: 22px;
+      --maxw: 1120px;
+    }
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg:#f7f8fb; --panel:#ffffff; --text:#0b0d12; --muted:#5b6575; --border:#e9edf3; --shadow:0 10px 30px rgba(16,22,34,.08);
+      }
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Helvetica Neue", sans-serif;
+      background: radial-gradient(1200px 700px at 80% -20%, rgba(124,92,255,.2), transparent 60%),
+                  radial-gradient(1200px 700px at -10% 120%, rgba(30,230,165,.12), transparent 60%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.6;
+      letter-spacing:.2px;
+    }
+    a{color:inherit; text-decoration:none}
+    .container{max-width:var(--maxw); margin-inline:auto; padding: 28px 24px}
+    header{
+      position:sticky; top:0; z-index:10; backdrop-filter:saturate(1.2) blur(8px);
+      background: linear-gradient(180deg, rgba(11,13,18,.85), rgba(11,13,18,.65));
+      border-bottom:1px solid var(--border);
+    }
+    @media (prefers-color-scheme: light){
+      header{background: linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.65));}
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between; gap:16px;
+    }
+    .brand{display:flex; align-items:center; gap:12px; font-weight:700; letter-spacing:.3px}
+    .logo{
+      width:38px; height:38px; border-radius:12px; background:
+        conic-gradient(from 210deg, var(--brand), var(--brand-2));
+      box-shadow: 0 8px 18px rgba(124,92,255,.25), inset 0 0 0 2px rgba(255,255,255,.12);
+    }
+    .nav a.btn{padding:10px 14px; border:1px solid var(--border); border-radius:12px}
+    .nav a.btn:hover{border-color: transparent; background: linear-gradient(90deg, var(--brand), var(--brand-2)); color:#0b0d12}
+
+    /* Hero */
+    .hero{padding:56px 0 28px}
+    .hero-wrap{display:grid; grid-template-columns: 1.2fr .8fr; gap:32px; align-items:center}
+    .badge{display:inline-flex; align-items:center; gap:8px; font-size:12px; padding:6px 10px; border:1px solid var(--border); border-radius:999px; color:var(--muted)}
+    .badge .dot{width:6px; height:6px; border-radius:50%; background: var(--brand-2); box-shadow: 0 0 0 5px rgba(30,230,165,.12)}
+    h1{font-size:44px; line-height:1.1; margin:14px 0 10px; letter-spacing:-.02em}
+    .lead{font-size:18px; color:var(--muted); max-width:60ch}
+    .cta{display:flex; gap:12px; margin-top:22px}
+    .btn{
+      display:inline-flex; align-items:center; gap:10px; padding:12px 16px; border-radius:14px; border:1px solid var(--border);
+      font-weight:600; transition: transform .08s ease, background .2s ease, border .2s ease;
+    }
+    .btn:hover{transform: translateY(-1px)}
+    .btn.primary{background: linear-gradient(90deg, var(--brand), var(--brand-2)); color:#0b0d12; border-color:transparent}
+    .btn.ghost:hover{border-color:transparent; background: rgba(124,92,255,.09)}
+
+    .card-hero{
+      background:linear-gradient(180deg, rgba(124,92,255,.08), rgba(124,92,255,0) 40%), var(--panel);
+      border:1px solid var(--border); border-radius:var(--radius-lg); padding:22px; box-shadow: var(--shadow);
+    }
+    .stats{display:grid; grid-template-columns: repeat(3,1fr); gap:12px; margin-top:14px}
+    .stat{background:rgba(255,255,255,.03); border:1px solid var(--border); border-radius:14px; padding:14px; text-align:center}
+    .stat strong{font-size:22px}
+    .tag{display:inline-flex; align-items:center; gap:8px; padding:4px 10px; background:rgba(255,255,255,.04); border:1px solid var(--border); border-radius:999px; font-size:12px; color:var(--muted)}
+
+    /* Seções */
+    section{padding:36px 0}
+    .section-head{display:flex; align-items:end; justify-content:space-between; gap:16px; margin-bottom:18px}
+    .section-head h2{margin:0; font-size:24px}
+    .section-head p{margin:0; color:var(--muted)}
+
+    /* Projetos */
+    .grid{display:grid; grid-template-columns: repeat(3, 1fr); gap:18px}
+    .project{
+      position:relative; overflow:hidden; background: var(--panel); border:1px solid var(--border); border-radius:var(--radius);
+      transition: transform .15s ease, box-shadow .2s ease, border .2s ease;
+    }
+    .project:hover{transform: translateY(-4px); box-shadow: var(--shadow); border-color: transparent}
+    .thumb{aspect-ratio: 16/10; background: linear-gradient(135deg, rgba(124,92,255,.18), rgba(30,230,165,.18)); border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:center}
+    .thumb svg{opacity:.9}
+    .project .content{padding:16px}
+    .project h3{margin:0 0 6px; font-size:18px}
+    .project p{margin:0 0 12px; color:var(--muted)}
+    .chips{display:flex; flex-wrap:wrap; gap:8px}
+
+    /* Sobre */
+    .about{display:grid; grid-template-columns: .9fr 1.1fr; gap:24px}
+    .about .panel{background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); padding:18px}
+    .list{margin:0; padding-left:18px}
+
+    /* Contato */
+    .contact{
+      display:grid; grid-template-columns: 1fr 1fr; gap:18px;
+    }
+    .contact .card{background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); padding:18px}
+    .contact a.btn{width:100%; justify-content:center}
+
+    /* Rodapé */
+    footer{padding:26px 0 60px; color:var(--muted)}
+    .foot{display:flex; align-items:center; justify-content:space-between; gap:16px}
+
+    /* Responsivo (opcional, mantém foco desktop mas não quebra no mobile) */
+    @media (max-width: 1100px){
+      .grid{grid-template-columns: repeat(2, 1fr)}
+      .hero-wrap{grid-template-columns: 1fr}
+      .about{grid-template-columns: 1fr}
+      .contact{grid-template-columns: 1fr}
+    }
+    @media (max-width: 620px){
+      .grid{grid-template-columns: 1fr}
+      h1{font-size:34px}
+    }
+
+    /* Utilidades */
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .row{display:flex; gap:12px; align-items:center}
+    .spacer{height:12px}
+  </style>
+</head>
+<body>
+  <!-- ===== Header ===== -->
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <span>Seu Nome • Dev</span>
+      </div>
+      <nav class="row">
+        <a class="btn" href="#projetos">Projetos</a>
+        <a class="btn" href="#sobre">Sobre</a>
+        <a class="btn" href="#contato">Contato</a>
+        <a class="btn" href="https://github.com/seuusuario" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero">
+    <div class="container hero-wrap">
+      <div>
+        <span class="badge"><span class="dot" aria-hidden="true"></span>Disponível para novos projetos</span>
+        <h1>Crio soluções web modernas<br> com foco em performance e UX</h1>
+        <p class="lead">Desenvolvedor(a) Front‑end/Full‑stack. Especialista em interfaces rápidas, acessíveis e fáceis de manter. Abaixo você encontra meus projetos em produção e formas diretas de contato.</p>
+        <div class="cta">
+          <a class="btn primary" href="#contato" aria-label="Ir para contato">
+            <!-- ícone seta -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Vamos conversar
+          </a>
+          <a class="btn ghost" href="#projetos">Ver projetos</a>
+        </div>
+      </div>
+      <aside class="card-hero" aria-label="Resumo profissional">
+        <div class="row" style="justify-content:space-between">
+          <strong>Stack principal</strong>
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">React</span>
+          <span class="tag">Node</span>
+        </div>
+        <div class="stats">
+          <div class="stat"><strong>20+</strong><div>Projetos</div></div>
+          <div class="stat"><strong>8</strong><div>Clientes</div></div>
+          <div class="stat"><strong>4.9★</strong><div>Avaliações</div></div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ===== Projetos ===== -->
+  <section id="projetos">
+    <div class="container">
+      <div class="section-head">
+        <h2>Projetos em Destaque</h2>
+        <p>Seleção de projetos reais com código e demo.</p>
+      </div>
+      <div class="grid">
+        <!-- CARD 1 -->
+        <article class="project">
+          <a href="https://seu-site-1.com" target="_blank" rel="noopener" class="thumb" aria-label="Abrir demo do Projeto 1">
+            <!-- thumbnail generativa em SVG (substitua por imagem do projeto) -->
+            <svg width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="8" y="8" width="80" height="80" rx="14" stroke="currentColor" opacity=".25"/>
+              <path d="M24 64L40 44l12 10 20-22" stroke="currentColor" stroke-width="3" opacity=".5"/>
+            </svg>
+          </a>
+          <div class="content">
+            <h3>Dashboard de Vendas</h3>
+            <p>SPA com filtros, gráficos e exportação. Foco em performance e acessibilidade.</p>
+            <div class="chips">
+              <span class="tag">React</span>
+              <span class="tag">Vite</span>
+              <span class="tag">API REST</span>
+              <a class="btn" href="https://github.com/seuusuario/projeto-1" target="_blank" rel="noopener">Código</a>
+              <a class="btn" href="https://seu-site-1.com" target="_blank" rel="noopener">Demo</a>
+            </div>
+          </div>
+        </article>
+        <!-- CARD 2 -->
+        <article class="project">
+          <a href="https://seu-site-2.com" target="_blank" rel="noopener" class="thumb" aria-label="Abrir demo do Projeto 2">
+            <svg width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="10" y="16" width="76" height="64" rx="12" stroke="currentColor" opacity=".25"/>
+              <path d="M18 60h60M18 48h60M18 36h36" stroke="currentColor" stroke-width="3" opacity=".5"/>
+            </svg>
+          </a>
+          <div class="content">
+            <h3>Landing Page SaaS</h3>
+            <p>Conversão otimizada com testes A/B, SEO técnico e Lighthouse 98+.</p>
+            <div class="chips">
+              <span class="tag">HTML/CSS</span>
+              <span class="tag">SEO</span>
+              <a class="btn" href="https://github.com/seuusuario/projeto-2" target="_blank" rel="noopener">Código</a>
+              <a class="btn" href="https://seu-site-2.com" target="_blank" rel="noopener">Demo</a>
+            </div>
+          </div>
+        </article>
+        <!-- CARD 3 -->
+        <article class="project">
+          <a href="https://seu-site-3.com" target="_blank" rel="noopener" class="thumb" aria-label="Abrir demo do Projeto 3">
+            <svg width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="12" y="12" width="72" height="72" rx="18" stroke="currentColor" opacity=".25"/>
+              <path d="M28 60l14-14 10 10 16-20" stroke="currentColor" stroke-width="3" opacity=".5"/>
+              <circle cx="32" cy="34" r="4" fill="currentColor" opacity=".5"/>
+            </svg>
+          </a>
+          <div class="content">
+            <h3>E‑commerce Minimal</h3>
+            <p>Catálogo, carrinho e checkout integrado. Design system reutilizável.</p>
+            <div class="chips">
+              <span class="tag">Next.js</span>
+              <span class="tag">Stripe</span>
+              <a class="btn" href="https://github.com/seuusuario/projeto-3" target="_blank" rel="noopener">Código</a>
+              <a class="btn" href="https://seu-site-3.com" target="_blank" rel="noopener">Demo</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Sobre ===== -->
+  <section id="sobre">
+    <div class="container">
+      <div class="section-head">
+        <h2>Sobre mim</h2>
+        <p>Quem eu sou e como posso ajudar seu negócio.</p>
+      </div>
+      <div class="about">
+        <div class="panel">
+          <h3 style="margin-top:0">Olá! 👋</h3>
+          <p>Sou desenvolvedor com foco em resultados. Atuo desde a descoberta do problema até a entrega em produção, transformando objetivos de negócio em produtos digitais simples, rápidos e escaláveis.</p>
+          <ul class="list">
+            <li>Interfaces acessíveis (WCAG), SEO e performance (Core Web Vitals).</li>
+            <li>Boas práticas: componentes reutilizáveis, clean code e testes.</li>
+            <li>Integrações com APIs REST/GraphQL e automações.</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3 style="margin-top:0">Serviços</h3>
+          <ul class="list">
+            <li>Sites institucionais e landing pages de alta conversão.</li>
+            <li>SPAs/Dashboards com React/Next.js.</li>
+            <li>Otimização de performance e SEO técnico.</li>
+            <li>Design System e padronização visual.</li>
+          </ul>
+          <div class="spacer"></div>
+          <div class="row">
+            <span class="tag">Disponível remoto</span>
+            <span class="tag">Contrato PJ/CLT/Freela</span>
+            <span class="tag">Fuso BR‑3</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Contato ===== -->
+  <section id="contato">
+    <div class="container">
+      <div class="section-head">
+        <h2>Contato</h2>
+        <p>Fale comigo por e‑mail, WhatsApp ou redes.</p>
+      </div>
+      <div class="contact">
+        <div class="card">
+          <h3 style="margin-top:0">E‑mail</h3>
+          <p class="lead" style="margin-top:6px">Respondo em até 24h úteis.</p>
+          <a class="btn primary" href="mailto:voce@exemplo.com">Enviar e‑mail</a>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0">WhatsApp</h3>
+          <p class="lead" style="margin-top:6px">Conversa rápida sobre seu projeto.</p>
+          <a class="btn ghost" href="https://wa.me/5599999999999" target="_blank" rel="noopener">Chamar no Whats</a>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0">LinkedIn</h3>
+          <p class="lead" style="margin-top:6px">Vamos nos conectar.</p>
+          <a class="btn ghost" href="https://www.linkedin.com/in/seuuser" target="_blank" rel="noopener">Abrir LinkedIn</a>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0">GitHub</h3>
+          <p class="lead" style="margin-top:6px">Repositórios e contribuições.</p>
+          <a class="btn ghost" href="https://github.com/seuusuario" target="_blank" rel="noopener">Abrir GitHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Rodapé ===== -->
+  <footer>
+    <div class="container foot">
+      <small>© <span id="ano"></span> • Seu Nome — Todos os direitos reservados.</small>
+      <small>
+        <a href="#projetos">Projetos</a> ·
+        <a href="#sobre">Sobre</a> ·
+        <a href="#contato">Contato</a>
+      </small>
+    </div>
+  </footer>
+
+  <!-- JS opcional somente para ano dinâmico (pode remover se preferir 100% HTML/CSS) -->
+  <script>
+    document.getElementById('ano').textContent = new Date().getFullYear();
+  </script>
+
+  <!--
+    🔧 Como personalizar rápido:
+    1) Troque "Seu Nome" e links do GitHub/LinkedIn/WhatsApp.
+    2) Substitua os SVGs de thumb por imagens reais (use <img src="thumb.jpg" alt="…" class="thumb"/>).
+    3) Duplique os <article class="project"> para adicionar mais projetos.
+    4) Ajuste as cores em :root se quiser outro tema.
+  -->
+</body>
+</html>
