@@ -1,0 +1,181 @@
+/* =====================
+   Design System
+   ===================== */
+:root{
+  --bg: #0b0b12;
+  --surface: #12121a;
+  --surface-2: #171724;
+  --text: #e7e7f0;
+  --muted: #b8b8c7;
+  --brand: #7c3aed; /* roxo */
+  --brand-2: #22d3ee; /* ciano */
+  --ok: #22c55e;
+  --warning: #f59e0b;
+  --radius: 16px;
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color:var(--text);
+  background:radial-gradient(1200px 600px at 85% -10%, rgba(124,58,237,.20), transparent 60%), var(--bg);
+  line-height:1.55;
+}
+
+img{max-width:100%;display:block}
+
+.container{width:min(1120px, 92%); margin-inline:auto}
+.section{padding: clamp(56px, 8vw, 96px) 0}
+.section--alt{background: linear-gradient(180deg, transparent, rgba(124,58,237,.08));}
+.section__header{margin-bottom: clamp(24px, 5vw, 40px)}
+.section__header h2{font-size: clamp(1.6rem, 2.8vw, 2.2rem); margin:0 0 8px; letter-spacing:-.02em}
+.section__header p{color:var(--muted); margin:0}
+
+/* =====================
+   Header
+   ===================== */
+.header{position:sticky; top:0; z-index:20; background: rgba(11,11,18,.72); backdrop-filter: blur(8px); border-bottom:1px solid rgba(255,255,255,.05)}
+.header__inner{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+.logo{display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--text); font-weight:700}
+.logo__mark{font-size:1.4rem; filter: drop-shadow(0 4px 10px rgba(124,58,237,.6))}
+.logo__text strong{color:var(--brand)}
+
+.nav{display:flex; gap: clamp(10px, 3vw, 24px)}
+.nav__link{color:var(--muted); text-decoration:none; font-weight:500; padding:10px 6px; border-radius:10px; transition: transform .2s ease, color .2s ease, background .2s ease}
+.nav__link:hover{color:var(--text); background: rgba(255,255,255,.05); transform: translateY(-1px)}
+
+/* =====================
+   Buttons
+   ===================== */
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; text-decoration:none; border-radius: 999px; padding: 12px 18px; font-weight:700; border:1px solid transparent; transition: transform .2s ease, box-shadow .2s ease, background .2s ease, color .2s ease}
+.btn--primary{background: linear-gradient(90deg, var(--brand), var(--brand-2)); color:#0b0b12; box-shadow: 0 8px 20px rgba(124,58,237,.35)}
+.btn--primary:hover{transform: translateY(-2px)}
+.btn--ghost{background: rgba(255,255,255,.06); color:var(--text); border-color: rgba(255,255,255,.12)}
+.btn--ghost:hover{background: rgba(255,255,255,.12)}
+.btn--outline{border-color: rgba(255,255,255,.16); color:var(--text); background: transparent}
+.btn--outline:hover{border-color: rgba(255,255,255,.28)}
+
+/* =====================
+   Hero
+   ===================== */
+.hero{padding: clamp(48px, 8vw, 120px) 0 24px}
+.hero__grid{display:grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(24px, 5vw, 48px); align-items:center}
+.hero__title{font-size: clamp(2rem, 4.5vw, 3.2rem); margin:0 0 12px; letter-spacing:-.02em}
+.grad{background: linear-gradient(90deg, var(--brand), var(--brand-2)); -webkit-background-clip:text; background-clip:text; color:transparent}
+.hero__subtitle{color:var(--muted); margin:0 0 20px; font-size: clamp(1rem, 2vw, 1.1rem)}
+.hero__cta{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:14px}
+.hero__badges{list-style:none; padding:0; margin:12px 0 0; display:flex; gap:16px; flex-wrap:wrap; color:var(--muted)}
+
+.mockup-card{position:relative; aspect-ratio: 4/5; border-radius: var(--radius); background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03)); border:1px solid rgba(255,255,255,.1); box-shadow: var(--shadow); overflow:hidden; transform: rotate(-2deg); animation: float 6s ease-in-out infinite}
+.mockup-card__top{height:18%; background: linear-gradient(90deg, rgba(124,58,237,.35), rgba(34,211,238,.35)); border-bottom:1px solid rgba(255,255,255,.06)}
+.mockup-card__book{position:absolute; left:8%; right:8%; height:18%; border-radius: 14px; background: linear-gradient(135deg, rgba(124,58,237,.45), rgba(34,211,238,.25)); border:1px solid rgba(255,255,255,.12); box-shadow: inset 0 1px rgba(255,255,255,.2)}
+.mockup-card__book--1{top:28%}
+.mockup-card__book--2{top:50%}
+.mockup-card__book--3{top:72%}
+
+.sparkles{position:absolute; inset:0; pointer-events:none}
+.sparkles span{position:absolute; width:8px; height:8px; background:radial-gradient(circle, #fff, rgba(255,255,255,0)); border-radius:50%; opacity:.8; animation: sparkle 4s linear infinite}
+.sparkles span:nth-child(1){top:24%; left:12%; animation-delay:0s}
+.sparkles span:nth-child(2){top:46%; left:78%; animation-delay:1s}
+.sparkles span:nth-child(3){top:70%; left:36%; animation-delay:2s}
+
+@keyframes float{50%{transform: rotate(2deg) translateY(-6px)}}
+@keyframes sparkle{0%{transform:scale(.6); opacity:.3}50%{transform:scale(1.1); opacity:1}100%{transform:scale(.6); opacity:.3}}
+
+.partners{overflow:hidden; margin-top: 28px; border-top:1px solid rgba(255,255,255,.08); border-bottom:1px solid rgba(255,255,255,.08); background: rgba(255,255,255,.02)}
+.partners__track{display:flex; gap:40px; padding:14px 0; min-width:max-content; animation: marquee 18s linear infinite}
+.partners__track span{color:var(--muted); white-space:nowrap; opacity:.9}
+@keyframes marquee{to{transform: translateX(-50%)}}
+
+/* =====================
+   Steps
+   ===================== */
+.steps{display:grid; grid-template-columns: repeat(4, 1fr); gap:18px; counter-reset: step}
+.step{padding:18px; background: var(--surface); border:1px solid rgba(255,255,255,.08); border-radius: var(--radius); box-shadow: var(--shadow); transition: transform .25s ease, background .25s ease}
+.step:hover{transform: translateY(-4px); background: var(--surface-2)}
+.step__icon{font-size: 1.4rem; margin-bottom: 8px}
+.step h3{margin:6px 0 6px; font-size:1.05rem}
+.step p{margin:0; color:var(--muted)}
+
+/* =====================
+   Benefits
+   ===================== */
+.grid-3{display:grid; grid-template-columns: repeat(3,1fr); gap:18px}
+.card{background: var(--surface); border:1px solid rgba(255,255,255,.08); border-radius: var(--radius); padding:22px; box-shadow: var(--shadow); transition: transform .25s ease, border-color .25s ease}
+.card:hover{transform: translateY(-4px); border-color: rgba(124,58,237,.35)}
+.card__icon{font-size:1.6rem; margin-bottom: 10px}
+.card h3{margin:4px 0 6px}
+.card p{margin:0; color:var(--muted)}
+
+/* =====================
+   Pricing
+   ===================== */
+.pricing{display:grid; grid-template-columns: repeat(3,1fr); gap:18px}
+.price-card{position:relative; background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03)); border:1px solid rgba(255,255,255,.1); border-radius: calc(var(--radius) + 4px); padding:24px; box-shadow: var(--shadow); transform: translateY(0); transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease}
+.price-card:hover{transform: translateY(-6px); box-shadow: 0 18px 40px rgba(124,58,237,.25); border-color: rgba(124,58,237,.35)}
+.price-card--highlight{background: linear-gradient(180deg, rgba(124,58,237,.18), rgba(34,211,238,.10));}
+.ribbon{position:absolute; top:14px; right:-8px; background: linear-gradient(90deg, var(--brand), var(--brand-2)); color:#0b0b12; padding:6px 10px; font-size:.8rem; font-weight:800; border-radius: 999px}
+.price-card__title{margin:4px 0 6px; font-size:1.2rem}
+.price-card__price{font-size: clamp(1.8rem, 4vw, 2.4rem); margin:4px 0 14px; font-weight:800}
+.price-card__price span{font-size:.8rem; color:var(--muted)}
+.price-card__features{list-style:none; padding:0; margin:0 0 16px; display:grid; gap:8px; color:var(--muted)}
+
+.pricing__note{margin-top: 12px; color:var(--muted); text-align:center}
+
+/* =====================
+   Testimonials (marquee)
+   ===================== */
+.testi{overflow:hidden; border:1px solid rgba(255,255,255,.08); border-radius: var(--radius); background: rgba(255,255,255,.03)}
+.testi__track{display:flex; gap:22px; padding:20px; min-width:max-content; animation: marquee 28s linear infinite}
+.testi__item{min-width: clamp(260px, 36vw, 420px); background: var(--surface); border:1px solid rgba(255,255,255,.08); border-radius: 14px; padding:16px}
+.testi__item blockquote{margin:0 0 8px; font-weight:600}
+.testi__item figcaption{color:var(--muted)}
+
+/* =====================
+   FAQ
+   ===================== */
+.faq{display:grid; gap:12px}
+.faq__item{background: var(--surface); border:1px solid rgba(255,255,255,.08); border-radius: var(--radius); padding: 14px 16px}
+.faq__item>summary{cursor:pointer; list-style:none; font-weight:600}
+.faq__item>summary::marker{display:none}
+.faq__item[open]{border-color: rgba(124,58,237,.35)}
+.faq__item p{color:var(--muted); margin:8px 0 0}
+
+/* =====================
+   Footer
+   ===================== */
+.footer{border-top:1px solid rgba(255,255,255,.08); background: #0c0c14; padding: 28px 0}
+.footer__grid{display:flex; align-items:center; justify-content:space-between; gap:18px; flex-wrap:wrap}
+.footer__nav{display:flex; gap:18px}
+.footer__nav a{color:var(--muted); text-decoration:none}
+.footer__nav a:hover{color:var(--text)}
+.footer__copy{color:var(--muted)}
+
+/* =====================
+   Background Aurora (decoração)
+   ===================== */
+.bg-aurora{position:fixed; inset: -20% -20% auto -20%; height:min(58vh, 520px); z-index:-1;
+  background: radial-gradient(600px 300px at 20% 30%, rgba(34,211,238,.10), transparent 60%),
+              radial-gradient(600px 300px at 80% 20%, rgba(124,58,237,.18), transparent 60%);
+  filter: blur(20px); opacity:.9; animation: breathe 14s ease-in-out infinite}
+@keyframes breathe{50%{opacity:.65; transform: translateY(-6px)}}
+
+/* =====================
+   Responsive
+   ===================== */
+@media (max-width: 1000px){
+  .hero__grid{grid-template-columns: 1fr}
+  .mockup-card{max-width: 440px; margin: 10px auto 0}
+  .steps{grid-template-columns: repeat(2,1fr)}
+  .grid-3{grid-template-columns: 1fr}
+  .pricing{grid-template-columns: 1fr}
+  .footer__grid{flex-direction:column; align-items:flex-start}
+}
+
+/* Acessibilidade: menos movimento */
+@media (prefers-reduced-motion: reduce){
+  .mockup-card, .partners__track, .testi__track, .bg-aurora{animation:none}
+}

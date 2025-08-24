@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Leitura Club — Seu clube de assinatura de livros</title>
+    <meta name="description" content="Assine o Leitura Club e receba livros selecionados, brindes e experiências todo mês. Planos flexíveis e frete para todo o Brasil." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>📚</text></svg>">
+  </head>
+  <body>
+    <!-- ===== Decorative gradient background ===== -->
+    <div class="bg-aurora" aria-hidden="true"></div>
+
+    <!-- ===== Header ===== -->
+    <header class="header" id="topo">
+      <div class="container header__inner">
+        <a href="#topo" class="logo" aria-label="Página inicial Leitura Club">
+          <span class="logo__mark" aria-hidden="true">📚</span>
+          <span class="logo__text">Leitura <strong>Club</strong></span>
+        </a>
+        <nav class="nav" aria-label="primária">
+          <a href="#como-funciona" class="nav__link">Como funciona</a>
+          <a href="#beneficios" class="nav__link">Benefícios</a>
+          <a href="#planos" class="nav__link">Planos</a>
+          <a href="#faq" class="nav__link">FAQ</a>
+        </nav>
+        <a href="#planos" class="btn btn--ghost">Assinar</a>
+      </div>
+    </header>
+
+    <!-- ===== Hero ===== -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero__grid">
+        <div class="hero__content">
+          <h1 id="hero-title" class="hero__title">Livros incríveis <span class="grad">todo mês</span> na sua porta</h1>
+          <p class="hero__subtitle">Seleção curada por especialistas, brindes exclusivos e uma comunidade apaixonada por leitura. Simples, flexível e sem letras miúdas.</p>
+          <div class="hero__cta">
+            <a href="#planos" class="btn btn--primary">Começar agora</a>
+            <a href="#beneficios" class="btn btn--ghost">Ver benefícios</a>
+          </div>
+          <ul class="hero__badges" aria-label="diferenciais">
+            <li>✅ Troca grátis do livro do mês</li>
+            <li>🚚 Frete nacional</li>
+            <li>🎁 Brindes e mimos</li>
+          </ul>
+        </div>
+        <div class="hero__visual" aria-hidden="true">
+          <div class="mockup-card">
+            <div class="mockup-card__top"></div>
+            <div class="mockup-card__book mockup-card__book--1"></div>
+            <div class="mockup-card__book mockup-card__book--2"></div>
+            <div class="mockup-card__book mockup-card__book--3"></div>
+            <div class="sparkles">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="partners" aria-label="editoras parceiras">
+        <div class="partners__track">
+          <span>📖 Companhia das Letras</span>
+          <span>📘 Intrínseca</span>
+          <span>📗 Rocco</span>
+          <span>📙 HarperCollins</span>
+          <span>📕 Aleph</span>
+          <span>📔 Todavia</span>
+          <span>📖 Companhia das Letras</span>
+          <span>📘 Intrínseca</span>
+          <span>📗 Rocco</span>
+          <span>📙 HarperCollins</span>
+          <span>📕 Aleph</span>
+          <span>📔 Todavia</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Como funciona ===== -->
+    <section id="como-funciona" class="section">
+      <div class="container">
+        <header class="section__header">
+          <h2>Como funciona</h2>
+          <p>Assine em minutos e receba experiências literárias sem complicação.</p>
+        </header>
+        <ol class="steps" role="list">
+          <li class="step">
+            <div class="step__icon">📝</div>
+            <h3>Escolha um plano</h3>
+            <p>Planos mensais ou anuais, com benefícios crescentes.</p>
+          </li>
+          <li class="step">
+            <div class="step__icon">🎯</div>
+            <h3>Defina seu perfil</h3>
+            <p>Conte o que você ama ler. A curadoria faz o resto.</p>
+          </li>
+          <li class="step">
+            <div class="step__icon">📦</div>
+            <h3>Receba a caixa</h3>
+            <p>Livro do mês + brindes + surpresas. Tudo com frete nacional.</p>
+          </li>
+          <li class="step">
+            <div class="step__icon">🤝</div>
+            <h3>Participe da comunidade</h3>
+            <p>Clube de leitura, lives e desafios mensais.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===== Benefícios ===== -->
+    <section id="beneficios" class="section section--alt">
+      <div class="container">
+        <header class="section__header">
+          <h2>Por que assinar?</h2>
+          <p>Mais do que livros: uma experiência contínua com conteúdos e pessoas.
+          </p>
+        </header>
+        <div class="grid-3">
+          <article class="card card--benefit">
+            <div class="card__icon">💡</div>
+            <h3>Curadoria inteligente</h3>
+            <p>Seleção humana apoiada por dados de tendências para acertos constantes.</p>
+          </article>
+          <article class="card card--benefit">
+            <div class="card__icon">🔁</div>
+            <h3>Troca sem dor</h3>
+            <p>Não curtiu o livro do mês? Troque sem custo adicional.</p>
+          </article>
+          <article class="card card--benefit">
+            <div class="card__icon">🎧</div>
+            <h3>Conteúdos bônus</h3>
+            <p>Guias de leitura, podcasts e entrevistas exclusivos.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Planos ===== -->
+    <section id="planos" class="section">
+      <div class="container">
+        <header class="section__header">
+          <h2>Planos para todo tipo de leitor</h2>
+          <p>Cancele quando quiser. Sem taxas ocultas.</p>
+        </header>
+
+        <div class="pricing">
+          <article class="price-card">
+            <h3 class="price-card__title">Essencial</h3>
+            <p class="price-card__price"><span>R$</span>49<span>/mês</span></p>
+            <ul class="price-card__features">
+              <li>1 livro / mês</li>
+              <li>Brinde surpresa</li>
+              <li>Acesso à comunidade</li>
+            </ul>
+            <a class="btn btn--outline" href="#">Assinar Essencial</a>
+          </article>
+
+          <article class="price-card price-card--highlight" aria-label="plano mais popular">
+            <div class="ribbon">Popular</div>
+            <h3 class="price-card__title">Plus</h3>
+            <p class="price-card__price"><span>R$</span>79<span>/mês</span></p>
+            <ul class="price-card__features">
+              <li>1 livro premium / mês</li>
+              <li>2 brindes exclusivos</li>
+              <li>Troca grátis</li>
+              <li>Clube de leitura</li>
+            </ul>
+            <a class="btn btn--primary" href="#">Assinar Plus</a>
+          </article>
+
+          <article class="price-card">
+            <h3 class="price-card__title">Pro</h3>
+            <p class="price-card__price"><span>R$</span>109<span>/mês</span></p>
+            <ul class="price-card__features">
+              <li>2 livros / mês</li>
+              <li>Brindes colecionáveis</li>
+              <li>Lives e encontros</li>
+              <li>Suporte prioritário</li>
+            </ul>
+            <a class="btn btn--outline" href="#">Assinar Pro</a>
+          </article>
+        </div>
+
+        <p class="pricing__note">💜 Pagando o anual, 2 meses de desconto.</p>
+      </div>
+    </section>
+
+    <!-- ===== Depoimentos (marquee animado) ===== -->
+    <section class="section section--alt">
+      <div class="container">
+        <header class="section__header">
+          <h2>Quem já assina, recomenda</h2>
+          <p>Opiniões reais da nossa comunidade.
+          </p>
+        </header>
+        <div class="testi" aria-label="depoimentos">
+          <div class="testi__track">
+            <figure class="testi__item">
+              <blockquote>“A curadoria é impecável. Todo mês é um presente.”</blockquote>
+              <figcaption>— Marina, SP</figcaption>
+            </figure>
+            <figure class="testi__item">
+              <blockquote>“Voltei a ler com constância. Os brindes são um charme!”</blockquote>
+              <figcaption>— Diego, RJ</figcaption>
+            </figure>
+            <figure class="testi__item">
+              <blockquote>“O clube me apresentou autores que eu jamais descobriria.”</blockquote>
+              <figcaption>— Lúcia, PR</figcaption>
+            </figure>
+            <figure class="testi__item">
+              <blockquote>“Atendimento rápido e as lives são divertidíssimas.”</blockquote>
+              <figcaption>— Pedro, BA</figcaption>
+            </figure>
+            <!-- duplicados para loop infinito -->
+            <figure class="testi__item" aria-hidden="true">
+              <blockquote>“A curadoria é impecável. Todo mês é um presente.”</blockquote>
+              <figcaption>— Marina, SP</figcaption>
+            </figure>
+            <figure class="testi__item" aria-hidden="true">
+              <blockquote>“Voltei a ler com constância. Os brindes são um charme!”</blockquote>
+              <figcaption>— Diego, RJ</figcaption>
+            </figure>
+            <figure class="testi__item" aria-hidden="true">
+              <blockquote>“O clube me apresentou autores que eu jamais descobriria.”</blockquote>
+              <figcaption>— Lúcia, PR</figcaption>
+            </figure>
+            <figure class="testi__item" aria-hidden="true">
+              <blockquote>“Atendimento rápido e as lives são divertidíssimas.”</blockquote>
+              <figcaption>— Pedro, BA</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section id="faq" class="section">
+      <div class="container">
+        <header class="section__header">
+          <h2>Perguntas frequentes</h2>
+          <p>Transparência total. Se ficar com dúvida, fale com a gente.</p>
+        </header>
+        <div class="faq">
+          <details class="faq__item">
+            <summary>Posso pausar ou cancelar quando quiser?</summary>
+            <p>Sim! Você controla sua assinatura pelo painel. Cancelamentos e pausas são imediatos.</p>
+          </details>
+          <details class="faq__item">
+            <summary>Como funciona a troca do livro?</summary>
+            <p>Se o livro do mês não agradar, solicite a troca em até 7 dias após o recebimento.</p>
+          </details>
+          <details class="faq__item">
+            <summary>Os planos têm fidelidade?</summary>
+            <p>Não. Você pode ficar enquanto fizer sentido para você — sem multas.</p>
+          </details>
+          <details class="faq__item">
+            <summary>Quais regiões atendem?</summary>
+            <p>Enviamos para todo o Brasil com parceiros logísticos nacionais.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Footer ===== -->
+    <footer class="footer">
+      <div class="container footer__grid">
+        <div class="footer__brand">
+          <a href="#topo" class="logo">
+            <span class="logo__mark">📚</span>
+            <span class="logo__text">Leitura <strong>Club</strong></span>
+          </a>
+          <p class="footer__copy">© <span id="year"></span> Leitura Club. Todos os direitos reservados.</p>
+        </div>
+        <nav class="footer__nav" aria-label="rodapé">
+          <a href="#como-funciona">Como funciona</a>
+          <a href="#beneficios">Benefícios</a>
+          <a href="#planos">Planos</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+      </div>
+    </footer>
+
+    <script>
+      // JS opcional: apenas para atualizar o ano automaticamente
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
