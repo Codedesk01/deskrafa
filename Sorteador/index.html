@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sorteador de Números</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <h1>Sorteador 🎲</h1>
+    
+    <label for="qtd">Quantos números sortear?</label>
+    <input type="number" id="qtd" min="1" placeholder="Ex: 5">
+
+    <label for="min">Número mínimo:</label>
+    <input type="number" id="min" value="1">
+
+    <label for="max">Número máximo:</label>
+    <input type="number" id="max" value="100">
+
+    <button id="sortear">Sortear</button>
+
+    <div id="resultado" class="resultado"></div>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
