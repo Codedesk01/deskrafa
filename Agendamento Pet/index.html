@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento PetLove</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS e JavaScript -->
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <header>
+        <div class="header-content">
+            <h1>PetLove Agendamentos 🐾</h1>
+            <div class="api-info">
+                <p>Dólar Hoje: <span id="dollar-quote">Carregando...</span></p>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="new-appointment">
+            <h2>Novo Agendamento</h2>
+            <form id="appointment-form">
+                <div class="form-group">
+                    <label for="pet-name">Nome do Pet:</label>
+                    <input type="text" id="pet-name" placeholder="Ex: Thor" required>
+                </div>
+                <div class="form-group">
+                    <label for="owner-name">Nome do Tutor:</label>
+                    <input type="text" id="owner-name" placeholder="Ex: Jane Foster" required>
+                </div>
+                <div class="form-group">
+                    <label for="service">Serviço:</label>
+                    <select id="service" required>
+                        <option value="" disabled selected>Selecione um serviço</option>
+                        <option value="Banho">Banho</option>
+                        <option value="Tosa">Tosa</option>
+                        <option value="Consulta">Consulta</option>
+                        <option value="Vacinação">Vacinação</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="appointment-time">Data e Hora:</label>
+                    <input type="datetime-local" id="appointment-time" required>
+                </div>
+                <button type="submit">Agendar ✨</button>
+            </form>
+        </section>
+
+        <section class="appointments-list">
+            <h2>Sua Agenda</h2>
+            <div class="filter-container">
+                <label for="filter-date">Filtrar por data:</label>
+                <input type="date" id="filter-date">
+            </div>
+
+            <div id="schedule">
+                <h3>Manhã</h3>
+                <ul id="morning-list" class="appointment-period"></ul>
+
+                <h3>Tarde</h3>
+                <ul id="afternoon-list" class="appointment-period"></ul>
+
+                <h3>Noite</h3>
+                <ul id="night-list" class="appointment-period"></ul>
+            </div>
+            <p id="no-appointments-message" class="hidden">Nenhum agendamento para a data selecionada.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Feito com 💜 por <a href="https://www.rocketseat.com.br/" target="_blank">Rocketseat</a></p>
+    </footer>
+
+</body>
+</html>
